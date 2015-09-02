@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.molymer.conf
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.molymer.conf; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext;visibility:=reexport,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types,
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
+ org.eclipse.core.runtime;bundle-version="3.10.0"
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.molymer.conf,
+ org.molymer.conf.services,
+ org.molymer.conf.configDsl,
+ org.molymer.conf.configDsl.impl,
+ org.molymer.conf.configDsl.util,
+ org.molymer.conf.serializer,
+ org.molymer.conf.parser.antlr,
+ org.molymer.conf.parser.antlr.internal,
+ org.molymer.conf.validation,
+ org.molymer.conf.scoping,
+ org.molymer.conf.generator,
+ org.molymer.conf.formatting

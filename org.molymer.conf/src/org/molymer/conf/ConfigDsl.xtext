@@ -1,0 +1,27 @@
+grammar org.molymer.conf.ConfigDsl with org.eclipse.xtext.common.Terminals
+
+import "http://www.eclipse.org/xtext/common/JavaVMTypes" as jvmTypes
+
+generate configDsl "http://www.molymer.org/conf/ConfigDsl"
+
+Config:
+'config' '{'
+	'appName' '=' appName=STRING
+	'mainClass' '=' mainClass=STRING
+	
+	'srcFolder' '=' srcFolder=STRING
+	'outFolder' '=' outFolder=STRING
+	
+	'generators' '{'
+		('[' selectors+=[Generator]+ ']')?
+		generators+=Generator+
+	'}'
+'}';
+
+Generator:
+	name=ID '=' bundle=STRING ':' genClass=STRING//[jvmTypes::JvmType | QualifiedName]
+;
+
+QualifiedName: ID ('.' ID)*;
+
+terminal STRING: '"' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') )* '"';

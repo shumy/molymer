@@ -1,0 +1,183 @@
+grammar org.molymer.ModelDsl hidden(WS, END_LINE, ML_COMMENT, SL_COMMENT)
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+generate modelDsl "http://www.molymer.org/ModelDsl"
+
+Model: imports+=Import* elements+=Element*;
+
+Import: 'import' importedNamespace = QualifiedNameWithWildcard;
+
+//all elements have annotations
+Element: Type | Annotation | Package;
+Type: Entity | DataType;
+
+Package:
+annotations+=AnnotationGroup*
+'package' name=ID '{'
+	(elements+=Element)*
+'}';
+
+
+//BEGIN datatypes----------------------------------------------------------------------------------
+DataType:
+annotations+=AnnotationGroup*
+'datatype' name=ID '{'
+	formatedFields+=DataTypeField*
+'}';
+
+DataTypeField:
+	(pattern=PatternType format=PATTERN_STRING) | type=[DataType | QualifiedName]
+;
+
+PatternType:
+	REGEX='@regex' | DATE='@date' | NUMBER='@number'
+;
+//END datatypes------------------------------------------------------------------------------------
+
+
+//BEGIN entities-----------------------------------------------------------------------------------
+Entity:
+annotations+=AnnotationGroup*
+'entity' name=ID '{'
+	parent=Parent?
+	elements=EntityElements
+	
+	groups+=EntityGroup*
+'}';
+
+EntityGroup:
+'group' name=ID '{'
+	elements=EntityElements
+'}'
+;
+
+EntityElements:
+	{EntityElements}
+	(childs+=Child* & properties+=Property* & references+=Reference* & referenceLists+=ReferenceList*)
+;
+//END entities-------------------------------------------------------------------------------------
+
+
+//BEGIN fields and containers----------------------------------------------------------------------
+Container: Parent | Child;
+Field: Property | Reference | ReferenceList;
+
+Parent:
+	':parent->' type=[Entity | QualifiedName]
+	annotations+=AnnotationGroup*
+;
+
+Child:
+	':childs-<' type=[Entity | QualifiedName]
+	annotations+=AnnotationGroup*
+;
+
+Property:
+	name=ID optional?='?'? ':' type=[Type | QualifiedName]
+	annotations+=AnnotationGroup*
+;
+
+Reference:
+	name=ID optional?='?'? '-->' entity=[Entity | QualifiedName]
+	annotations+=AnnotationGroup*
+;
+
+ReferenceList:
+	name=ID ( ('-' reference=[Reference] '-<') | '--<') entity=[Entity | QualifiedName]
+	annotations+=AnnotationGroup*
+;
+//END fields and containers------------------------------------------------------------------------
+
+
+//BEGIN annotations--------------------------------------------------------------------------------
+Annotation:
+'[' types+=AnnoTypes+ instances+=AnnotationInstance* ']'
+'annotation' name=ID '{'
+	mandatories+=AnnotationMandatoryProperty*
+	optionals+=AnnotationOptionalProperty*
+'}';
+
+
+AnnotationMandatoryProperty returns AnnotationProperty:
+	name=ID ':' (group=GroupType | type=ValueType multi?='*'?)
+;
+
+AnnotationOptionalProperty returns AnnotationProperty:
+	name=ID '?' ':' (group=GroupType | type=ValueType multi?='*'?)
+;
+
+AnnotationGroup:
+	'[' instances+=AnnotationInstance+ ']'
+;
+
+AnnotationInstance:
+	 annotation=[Annotation | QualifiedName]
+	 values+=AnnotationValue*
+	 ('-HIDDEN-' properties+=AnnotationHiddenProperty+ '-HIDDEN-')?
+;
+
+AnnotationHiddenProperty:
+	property=[AnnotationProperty] values+=[AnnotationValue]*
+;
+
+AnnotationValue: Value | AnnotationGroup;
+
+Annotated: Element | AnnotationInstance | Field | Container;
+
+GroupType: type='#group' name=STRING;
+PackageType: type='#package';
+
+DataTypeType: type='#datatype';
+AnnotationType: type='#annotation';
+EntityType: type='#entity';
+
+PropertyType: type='#property';
+
+ReferenceType: type='#reference';
+ReferenceListType: type='#reference-list';
+
+ParentType: type='#parent';
+ChildType: type='#child';
+
+AnnoTypes:
+	GroupType | PackageType | DataTypeType | AnnotationType | EntityType | PropertyType | ReferenceType | ReferenceListType | ParentType | ChildType
+;
+//END annotations----------------------------------------------------------------------------------
+
+
+//BEGIN types and values---------------------------------------------------------------------------
+enum ValueType:
+	STRING='#string' | INTEGER='#integer' | DOUBLE='#double' | INT_RANGE='#int-range' | FORMAT_RANGE='#format-range'
+;
+
+StringValue: value=STRING;
+IntegerValue: value=Integer;
+DoubleValue: value=Double;
+RangeValue hidden(): (from=Integer | fromInf?='*') '..' (to=Integer |  toInf?='*');
+FormatRangeValue hidden(): from=STRING '..' to=STRING;
+
+Value: => StringValue | IntegerValue | DoubleValue | RangeValue | FormatRangeValue;
+//END types and values-----------------------------------------------------------------------------
+
+
+Integer returns ecore::EInt: '-'? INT;
+Double returns ecore::EDouble: Integer '.' INT;
+
+QualifiedNameWithWildcard: QualifiedName '.*'?;
+QualifiedName: ID ('.' ID)*;
+
+
+terminal ID: ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+terminal INT: ('0'..'9')+;
+
+terminal ML_COMMENT: '/*' -> '*/';
+terminal SL_COMMENT: '//' !('\n'|'\r')* ('\r'? '\n')?;
+
+terminal WS: (' '|'\t')+;
+terminal END_LINE: ('\r'? '\n');
+
+terminal STRING: '"' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') )* '"';
+terminal PATTERN_STRING: "'" ( "\\" . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !("\\"|"'") )* "'";
+
+terminal ANY_OTHER: .;

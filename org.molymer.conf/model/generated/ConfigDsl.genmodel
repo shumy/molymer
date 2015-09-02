@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.molymer.conf/src-gen" editDirectory="/org.molymer.conf.edit/src"
+    editorDirectory="/org.molymer.conf.editor/src" modelPluginID="org.molymer.conf"
+    forceOverwrite="true" modelName="ConfigDsl" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="6.0" copyrightFields="false" editPluginID="org.molymer.conf.edit"
+    editorPluginID="org.molymer.conf.editor" runtimeVersion="2.10">
+  <genPackages prefix="ConfigDsl" basePackage="org.molymer.conf" disposableProviderFactory="true"
+      fileExtensions="mconf" ecorePackage="ConfigDsl.ecore#/">
+    <genClasses ecoreClass="ConfigDsl.ecore#//Config">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ConfigDsl.ecore#//Config/appName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ConfigDsl.ecore#//Config/mainClass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ConfigDsl.ecore#//Config/srcFolder"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ConfigDsl.ecore#//Config/outFolder"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ConfigDsl.ecore#//Config/selectors"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ConfigDsl.ecore#//Config/generators"/>
+    </genClasses>
+    <genClasses ecoreClass="ConfigDsl.ecore#//Generator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ConfigDsl.ecore#//Generator/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ConfigDsl.ecore#//Generator/bundle"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ConfigDsl.ecore#//Generator/genClass"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

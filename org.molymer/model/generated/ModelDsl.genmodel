@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.molymer/src-gen" editDirectory="/org.molymer.edit/src"
+    editorDirectory="/org.molymer.editor/src" modelPluginID="org.molymer" forceOverwrite="true"
+    modelName="ModelDsl" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="6.0" copyrightFields="false" editPluginID="org.molymer.edit"
+    editorPluginID="org.molymer.editor" runtimeVersion="2.10">
+  <genPackages prefix="ModelDsl" basePackage="org.molymer" disposableProviderFactory="true"
+      fileExtensions="mdsl" ecorePackage="ModelDsl.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ModelDsl.ecore#//ValueType">
+      <genEnumLiterals ecoreEnumLiteral="ModelDsl.ecore#//ValueType/STRING"/>
+      <genEnumLiterals ecoreEnumLiteral="ModelDsl.ecore#//ValueType/INTEGER"/>
+      <genEnumLiterals ecoreEnumLiteral="ModelDsl.ecore#//ValueType/DOUBLE"/>
+      <genEnumLiterals ecoreEnumLiteral="ModelDsl.ecore#//ValueType/INT_RANGE"/>
+      <genEnumLiterals ecoreEnumLiteral="ModelDsl.ecore#//ValueType/FORMAT_RANGE"/>
+    </genEnums>
+    <genClasses ecoreClass="ModelDsl.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//Model/imports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//Model/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//Import">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//Import/importedNamespace"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//Element">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//Element/name"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//Type">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//Type/annotations"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//Package">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//Package/annotations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//Package/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//DataType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//DataType/formatedFields"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//DataTypeField">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//DataTypeField/pattern"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//DataTypeField/format"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//DataTypeField/type"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//PatternType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//PatternType/REGEX"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//PatternType/DATE"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//PatternType/NUMBER"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//Entity">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//Entity/parent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//Entity/elements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//Entity/groups"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//EntityGroup">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//EntityGroup/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//EntityGroup/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//EntityElements">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//EntityElements/childs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//EntityElements/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//EntityElements/references"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//EntityElements/referenceLists"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//Container">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//Container/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//Container/annotations"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//Field">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//Field/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//Field/annotations"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//Parent"/>
+    <genClasses ecoreClass="ModelDsl.ecore#//Child"/>
+    <genClasses ecoreClass="ModelDsl.ecore#//Property">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//Property/optional"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//Property/type"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//Reference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//Reference/optional"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//Reference/entity"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//ReferenceList">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//ReferenceList/reference"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//ReferenceList/entity"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//Annotation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//Annotation/types"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//Annotation/instances"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//Annotation/mandatories"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//Annotation/optionals"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//AnnotationProperty">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//AnnotationProperty/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//AnnotationProperty/group"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//AnnotationProperty/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//AnnotationProperty/multi"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//AnnotationGroup">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//AnnotationGroup/instances"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//AnnotationInstance">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//AnnotationInstance/annotation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//AnnotationInstance/values"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//AnnotationInstance/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//AnnotationHiddenProperty">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//AnnotationHiddenProperty/property"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModelDsl.ecore#//AnnotationHiddenProperty/values"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//AnnotationValue"/>
+    <genClasses ecoreClass="ModelDsl.ecore#//Annotated"/>
+    <genClasses ecoreClass="ModelDsl.ecore#//GroupType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//GroupType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//PackageType"/>
+    <genClasses ecoreClass="ModelDsl.ecore#//DataTypeType"/>
+    <genClasses ecoreClass="ModelDsl.ecore#//AnnotationType"/>
+    <genClasses ecoreClass="ModelDsl.ecore#//EntityType"/>
+    <genClasses ecoreClass="ModelDsl.ecore#//PropertyType"/>
+    <genClasses ecoreClass="ModelDsl.ecore#//ReferenceType"/>
+    <genClasses ecoreClass="ModelDsl.ecore#//ReferenceListType"/>
+    <genClasses ecoreClass="ModelDsl.ecore#//ParentType"/>
+    <genClasses ecoreClass="ModelDsl.ecore#//ChildType"/>
+    <genClasses ecoreClass="ModelDsl.ecore#//AnnoTypes">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//AnnoTypes/type"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//StringValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//StringValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//IntegerValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//IntegerValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//DoubleValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//DoubleValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//RangeValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//RangeValue/from"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//RangeValue/fromInf"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//RangeValue/to"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//RangeValue/toInf"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//FormatRangeValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//FormatRangeValue/from"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelDsl.ecore#//FormatRangeValue/to"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelDsl.ecore#//Value"/>
+  </genPackages>
+</genmodel:GenModel>
