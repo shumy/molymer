@@ -1,7 +1,5 @@
 grammar org.molymer.conf.ConfigDsl with org.eclipse.xtext.common.Terminals
 
-import "http://www.eclipse.org/xtext/common/JavaVMTypes" as jvmTypes
-
 generate configDsl "http://www.molymer.org/conf/ConfigDsl"
 
 Config:
@@ -19,7 +17,7 @@ Config:
 '}';
 
 Generator:
-	name=ID '=' bundle=STRING ':' genClass=STRING//[jvmTypes::JvmType | QualifiedName]
+	name=ID '=' bundle=STRING ':' genClass=STRING
 ;
 
 QualifiedName: ID ('.' ID)*;
