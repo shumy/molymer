@@ -99,10 +99,10 @@ package people {
 }
 ```
 In an entity you can have: 
-* properties in the format "<name> [?] : <datatype> [annotations marked with #property]"
-* references in the format "<name> [?] --> <entity> [annotations marked with #reference]"
-* reference lists in the format "<name> [?] -[link to inverse reference]-< <entity> [annotations marked with #reference-list]"
-* parent ownership in the format ":parent-> <entity> [annotations marked with #parent]"
-* childs from a parent ownership in the format ":childs-< <entity> [annotations marked with #child]"
+* properties in the format ```<name> [?] : <datatype> [annotations marked with #property]```
+* references in the format ```<name> [?] --> <entity> [annotations marked with #reference]```
+* reference lists in the format ```<name> [?] -[link to inverse reference]-< <entity> [annotations marked with #reference-list]```
+* parent ownership in the format ```:parent-> <entity> [annotations marked with #parent]```
+* childs from a parent ownership in the format ```:childs-< <entity> [annotations marked with #child]```
 
 Parent and childs are a kind of composite relations. When translated to generated code it normally means that the parent entity has some methods like "createChild" and "deleteChild" and the child entity must accept the parent in the constructor. But these generated results are really up to the generator.
